@@ -2,9 +2,10 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import { withTranslation, WithTranslation } from 'react-i18next';
-import i18 from "./shared/lib"
-import "./css/styles.css"
+
 import { Home, About } from "./pages/Pages";
+import i18n from "./shared/lib"
+import "./css/styles.css"
 
 const TranslatedHome = withTranslation()(Home)
 const TranslatedAbout = withTranslation()(About)
@@ -15,11 +16,10 @@ class App extends React.Component<WithTranslation, {}>  {
         super(props)
     }
 
-    en = (e) => {
-        this.props.i18n.changeLanguage("en")
-    }
-    th = (e) => {
-        this.props.i18n.changeLanguage("th")
+    switch = () => {
+        this.props.i18n.language == "en"
+            ? this.props.i18n.changeLanguage("th")
+            : this.props.i18n.changeLanguage("en")
     }
 
     render() {
@@ -28,26 +28,22 @@ class App extends React.Component<WithTranslation, {}>  {
         return <Router>
             <header style={{ margin: "10px" }}>
                 <div style={{ display: "inline" }}>
-                    <button><Link to="/home">Home</Link></button>
-                    <button><Link to="/about">About</Link></button>
+                    <button><Link to="/home">{t("homeLink")}</Link></button>
+                    <button><Link to="/about">{t("aboutLink")}</Link></button>
                 </div>
                 <div style={{ float: "right" }}>
-                    {
-                        this.props.i18n.language == "en"
-                            ? <button onClick={this.th}>{t("th")}</button>
-                            : <button onClick={this.en}>{t("en")}</button>
-                    }
+                    <button onClick={this.switch}>{t("lang")}</button>
                 </div>
             </header>
 
-            <div style={{ margin: "10px", border: "1px solid grey", padding: "10px", height: "300px" }}>
-                <Route exact path="/home" component={() => <TranslatedHome i18n={i18} />} />
-                <Route path="/about" component={() => <TranslatedAbout i18n={i18} />} />
-            </div>
+            <section style={{ margin: "10px", border: "1px solid grey", padding: "10px", height: "250px" }}>
+                <Route exact path="/home" component={() => <TranslatedHome i18n={i18n} />} />
+                <Route path="/about" component={() => <TranslatedAbout i18n={i18n} />} />
+            </section>
         </Router>
     }
 }
 
 const TranslatedApp = withTranslation()(App)
 
-ReactDOM.render(<TranslatedApp i18n={i18} />, document.getElementById("root"))
+ReactDOM.render(<TranslatedApp i18n={i18n} />, document.getElementById("root"))
