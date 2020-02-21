@@ -9,6 +9,8 @@ export class I0 extends React.Component<IT, {}> {
             <div>
                 <h2>Page 0</h2>
                 <h2>{t("welcome")}</h2>
+                <button>{t("ok")}</button>
+                <button>{t("cancel")}</button>
             </div>
         )
     }

@@ -1,14 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import { WithTranslation, withTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { I1 } from "./pages/i1"
 import { I0 } from "./pages/i0"
 import { I2 } from "./pages/i2"
-import i18 from "./shared/lib"
 import { IT } from "./shared/t";
+import i18 from "./shared/lib"
 
+import "./css/styles.css"
 
 class App extends React.Component<IT, {}>  {
 

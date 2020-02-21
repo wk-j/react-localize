@@ -4,12 +4,16 @@ import { useTranslation, initReactI18next, WithTranslation } from "react-i18next
 const resources = {
     en: {
         translation: {
-            "welcome": "Welcome to React and react-i18next"
+            "welcome": "Hello world",
+            "ok": "OK",
+            "cancel": "Cancel"
         }
     },
     th: {
         translation: {
-            "welcome": "สวัสดีชาวโลก"
+            "welcome": "สวัสดีชาวโลก",
+            "ok": "ตกลง",
+            "cancel": "ยกเลิก"
         }
     }
 }
