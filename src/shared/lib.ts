@@ -1,6 +1,7 @@
 import i18n from "i18next"
 
-type Keys = "homeLink"
+type Keys =
+    | "homeLink"
     | "aboutLink"
     | "home"
     | "about"
@@ -32,6 +33,8 @@ const resources = {
         }
     }
 }
+
+let X = typeof (resources.en).translation
 
 i18n.init({
     resources,

@@ -23,8 +23,7 @@ class App extends React.Component<WithTranslation, {}>  {
     }
 
     render() {
-        const t = this.props.t;
-        const __ = (k: Keys) => t(k)
+        const __ = (k: Keys) => this.props.t
 
         return <Router>
             <header style={{ margin: "10px" }}>
