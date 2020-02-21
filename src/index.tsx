@@ -1,17 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
-import { withTranslation } from 'react-i18next';
-
-import { I1 } from "./pages/i1"
-import { I0 } from "./pages/i0"
-import { I2 } from "./pages/i2"
-import { IT } from "./shared/t";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { withTranslation, WithTranslation } from 'react-i18next';
 import i18 from "./shared/lib"
-
 import "./css/styles.css"
+import { Home, About } from "./pages/Pages";
 
-class App extends React.Component<IT, {}>  {
+const TranslatedHome = withTranslation()(Home)
+const TranslatedAbout = withTranslation()(About)
+
+class App extends React.Component<WithTranslation, {}>  {
 
     constructor(props) {
         super(props)
@@ -27,28 +25,26 @@ class App extends React.Component<IT, {}>  {
     render() {
         const t = this.props.t;
 
-        const MyI0 = withTranslation()(I0)
-        const MyI1 = withTranslation()(I1)
-        const MyI2 = withTranslation()(I2)
-
         return <Router>
             <header style={{ margin: "10px" }}>
-                <button><Link to="/i0">Page 0</Link></button>
-                <button><Link to="/i1">Page 1</Link></button>
-                <button><Link to="/i2">Page 2</Link></button>
-                <button onClick={this.en}>En</button>
-                <button onClick={this.th}>Th</button>
+                <div style={{ display: "inline" }}>
+                    <button><Link to="/home">Home</Link></button>
+                    <button><Link to="/about">About</Link></button>
+                </div>
+                <div style={{ float: "right" }}>
+                    <button onClick={this.en}>{t("en")}</button>
+                    <button onClick={this.th}>{t("th")}</button>
+                </div>
             </header>
 
-            <div style={{ margin: "10px" }}>
-                <Route exact path="/i0" component={() => <MyI0 i18n={i18} />} />
-                <Route path="/i1" component={() => <MyI1 i18n={i18} />} />
-                <Route path="/i2" component={() => <MyI2 i18n={i18} />} />
+            <div style={{ margin: "10px", border: "1px solid grey", padding: "10px", height: "300px" }}>
+                <Route exact path="/home" component={() => <TranslatedHome i18n={i18} />} />
+                <Route path="/about" component={() => <TranslatedAbout i18n={i18} />} />
             </div>
         </Router>
     }
 }
 
-const MyT = withTranslation()(App)
+const TranslatedApp = withTranslation()(App)
 
-ReactDOM.render(<MyT i18n={i18} />, document.getElementById("root"))
+ReactDOM.render(<TranslatedApp i18n={i18} />, document.getElementById("root"))
