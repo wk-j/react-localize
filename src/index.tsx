@@ -32,8 +32,11 @@ class App extends React.Component<WithTranslation, {}>  {
                     <button><Link to="/about">About</Link></button>
                 </div>
                 <div style={{ float: "right" }}>
-                    <button onClick={this.en}>{t("en")}</button>
-                    <button onClick={this.th}>{t("th")}</button>
+                    {
+                        this.props.i18n.language == "en"
+                            ? <button onClick={this.th}>{t("th")}</button>
+                            : <button onClick={this.en}>{t("en")}</button>
+                    }
                 </div>
             </header>
 
