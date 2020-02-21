@@ -1,5 +1,13 @@
 import i18n from "i18next"
 
+type Keys = "homeLink"
+    | "aboutLink"
+    | "home"
+    | "about"
+    | "ok"
+    | "cancel"
+    | "lang"
+
 const resources = {
     en: {
         translation: {
@@ -30,4 +38,4 @@ i18n.init({
     lng: "en"
 })
 
-export default i18n;
+export { i18n, Keys };

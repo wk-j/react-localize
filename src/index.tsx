@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import { withTranslation, WithTranslation } from 'react-i18next';
 
 import { Home, About } from "./pages/Pages";
-import i18n from "./shared/lib"
+import { i18n, Keys } from "./shared/lib"
 import "./css/styles.css"
 
 const TranslatedHome = withTranslation()(Home)
@@ -24,15 +24,16 @@ class App extends React.Component<WithTranslation, {}>  {
 
     render() {
         const t = this.props.t;
+        const __ = (k: Keys) => t(k)
 
         return <Router>
             <header style={{ margin: "10px" }}>
                 <div style={{ display: "inline" }}>
-                    <button><Link to="/home">{t("homeLink")}</Link></button>
-                    <button><Link to="/about">{t("aboutLink")}</Link></button>
+                    <button><Link to="/home">{__("homeLink")}</Link></button>
+                    <button><Link to="/about">{__("aboutLink")}</Link></button>
                 </div>
                 <div style={{ float: "right" }}>
-                    <button onClick={this.switch}>{t("lang")}</button>
+                    <button onClick={this.switch}>{__("lang")}</button>
                 </div>
             </header>
 
