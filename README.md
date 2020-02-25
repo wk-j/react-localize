@@ -1,4 +1,4 @@
-## Localize
+## React Localize
 
 ```bash
 npm init -f
